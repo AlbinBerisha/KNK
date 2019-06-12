@@ -9,7 +9,7 @@ public final class DBConnection {
 	public static Statement createStatement() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/HCIProject?characterEncoding=UTF-8&useSSL=false", "root", "matematikaV2");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/HCIProject?characterEncoding=UTF-8&useSSL=false", "root", "root");
 			return connection.createStatement();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
