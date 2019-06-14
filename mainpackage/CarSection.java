@@ -21,7 +21,7 @@ public class CarSection extends GridPane {
 	public CarSection(int carID) {
 		super();
 		this.carID = carID;
-		this.initializeDatabase();
+		this.statement = DBConnection.createStatement();
 		this.setup();
 	}
 	
@@ -51,26 +51,6 @@ public class CarSection extends GridPane {
 		this.add(carImageView, 0, 0, 1, 2);
 		this.add(carModel, 1, 0);
 		this.setStyle("-fx-background-color: #0000005f; -fx-hgap: 275px; -fx-padding: 20px;");
-	}
-	
-	private void initializeDatabase() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		Connection connection;
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/HCIProject?characterEncoding=UTF-8&useSSL=false", "root", "matematikaV2");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			connection = null;
-		}
-		try {
-			this.statement = connection.createStatement();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 }
