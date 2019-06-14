@@ -35,7 +35,7 @@ public class LoginScene extends Scene {
 	
 	public LoginScene(Stage primaryStage) {
 		super(new GridPane(), 480, 720);
-		this.initializeDatabase();
+		this.statement = DBConnection.createStatement();
 		this.setup(primaryStage);
 	}
 	
@@ -124,26 +124,6 @@ public class LoginScene extends Scene {
 		grid.setStyle("-fx-alignment: center; -fx-vgap: 20px; -fx-hgap: 20px;");
 		
 		super.setRoot(borderPane);
-	}
-	
-	private void initializeDatabase() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		Connection connection;
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/HCIProject?characterEncoding=UTF-8&useSSL=false", "root", "matematikaV2");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			connection = null;
-		}
-		try {
-			this.statement = connection.createStatement();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	private void checkUsernameAndPassword(TextField username, TextField password, Stage primaryStage, Label errorLabel) {
